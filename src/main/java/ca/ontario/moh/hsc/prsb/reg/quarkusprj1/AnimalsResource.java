@@ -1,4 +1,4 @@
-package org.acme.getting.started;
+package ca.ontario.moh.hsc.prsb.reg.quarkusprj1;
 
 import java.util.ArrayList;
 
