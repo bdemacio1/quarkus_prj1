@@ -1,0 +1,163 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2021-03-02 - 07:52:05 +0000
+    app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+    app.quarkus.io/commit-id: 656be1730d3e413caa92a3f4d4e7711d64437059
+    app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+  labels:
+    app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/part-of: quarkus-prj1-bd-app
+    app.kubernetes.io/version: "1.0"
+    app: quarkus-prj1-bd
+    app.openshift.io/runtime: quarkus
+  name: quarkus-prj1-bd
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/part-of: quarkus-prj1-bd-app
+    app.kubernetes.io/version: "1.0"
+  type: ClusterIP
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2021-03-02 - 07:52:05 +0000
+    app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+    app.quarkus.io/commit-id: 656be1730d3e413caa92a3f4d4e7711d64437059
+    app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+  labels:
+    app: quarkus-prj1-bd
+    app.kubernetes.io/part-of: quarkus-prj1-bd-app
+    app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/version: "1.0"
+    app.openshift.io/runtime: quarkus
+  name: quarkus-prj1-bd
+spec: {}
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: s2i-java
+spec:
+  dockerImageRepository: fabric8/s2i-java
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2021-03-02 - 07:52:05 +0000
+    app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+    app.quarkus.io/commit-id: 656be1730d3e413caa92a3f4d4e7711d64437059
+    app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+  labels:
+    app: quarkus-prj1-bd
+    app.kubernetes.io/part-of: quarkus-prj1-bd-app
+    app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/version: "1.0"
+    app.openshift.io/runtime: quarkus
+  name: quarkus-prj1-bd
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: quarkus-prj1-bd:1.0
+  source:
+    binary: {}
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: s2i-java:2.3
+---
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2021-03-02 - 07:52:05 +0000
+    app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+    app.quarkus.io/commit-id: 656be1730d3e413caa92a3f4d4e7711d64437059
+    app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+  labels:
+    app: quarkus-prj1-bd
+    app.kubernetes.io/part-of: quarkus-prj1-bd-app
+    app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/version: "1.0"
+    app.openshift.io/runtime: quarkus
+  name: quarkus-prj1-bd
+spec:
+  replicas: 1
+  selector:
+    app.kubernetes.io/part-of: quarkus-prj1-bd-app
+    app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/version: "1.0"
+  template:
+    metadata:
+      annotations:
+        app.quarkus.io/build-timestamp: 2021-03-02 - 07:52:05 +0000
+        app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+        app.quarkus.io/commit-id: 656be1730d3e413caa92a3f4d4e7711d64437059
+        app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+      labels:
+        app: quarkus-prj1-bd
+        app.kubernetes.io/part-of: quarkus-prj1-bd-app
+        app.kubernetes.io/name: quarkus-prj1-bd
+        app.kubernetes.io/version: "1.0"
+        app.openshift.io/runtime: quarkus
+    spec:
+      containers:
+      - env:
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: JAVA_APP_JAR
+          value: /deployments/quarkus-prj1-bd-1.0.0-SNAPSHOT-runner.jar
+        image: image-registry.openshift-image-registry.svc:5000/prsb.quarkus/quarkus-prj1-bd:1.0
+        imagePullPolicy: IfNotPresent
+        name: quarkus-prj1-bd
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+      serviceAccount: default
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - quarkus-prj1-bd
+      from:
+        kind: ImageStreamTag
+        name: quarkus-prj1-bd:1.0.0-SNAPSHOT
+    type: ImageChange
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2021-03-02 - 07:52:05 +0000
+    app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+    app.quarkus.io/commit-id: 656be1730d3e413caa92a3f4d4e7711d64437059
+    app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
+  labels:
+    app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/part-of: quarkus-prj1-bd-app
+    app.kubernetes.io/version: "1.0"
+    app: quarkus-prj1-bd
+    app.openshift.io/runtime: quarkus
+  name: quarkus-prj1-bd
+spec:
+  host: ""
+  path: /
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: quarkus-prj1-bd
