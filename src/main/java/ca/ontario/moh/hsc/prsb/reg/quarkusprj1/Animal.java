@@ -1,7 +1,7 @@
 package ca.ontario.moh.hsc.prsb.reg.quarkusprj1;
 
 public class Animal {
-    //Comment to test pipeline trigger
+    //Comment to test pipeline trigger 2
     String name;
     String color;
     String size;
