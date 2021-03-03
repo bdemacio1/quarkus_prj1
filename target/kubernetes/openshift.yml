@@ -3,9 +3,9 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2021-03-03 - 08:21:30 +0000
+    app.quarkus.io/build-timestamp: 2021-03-03 - 09:43:02 +0000
     app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
-    app.quarkus.io/commit-id: 6c2bb417fbcb28fc11c910eda41052d1114facbd
+    app.quarkus.io/commit-id: c6e1805480e7b9050b704675f862487c4f5d4016
     app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
   labels:
     app.kubernetes.io/name: quarkus-prj1-bd
@@ -36,15 +36,15 @@ apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2021-03-03 - 08:21:30 +0000
+    app.quarkus.io/build-timestamp: 2021-03-03 - 09:43:02 +0000
     app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
-    app.quarkus.io/commit-id: 6c2bb417fbcb28fc11c910eda41052d1114facbd
+    app.quarkus.io/commit-id: c6e1805480e7b9050b704675f862487c4f5d4016
     app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
   labels:
     app: quarkus-prj1-bd
     app.openshift.io/runtime: quarkus
-    app.kubernetes.io/version: "1.0"
     app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/version: "1.0"
     app.kubernetes.io/part-of: quarkus-prj1-bd-app
   name: quarkus-prj1-bd
 spec: {}
@@ -53,15 +53,15 @@ apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2021-03-03 - 08:21:30 +0000
+    app.quarkus.io/build-timestamp: 2021-03-03 - 09:43:02 +0000
     app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
-    app.quarkus.io/commit-id: 6c2bb417fbcb28fc11c910eda41052d1114facbd
+    app.quarkus.io/commit-id: c6e1805480e7b9050b704675f862487c4f5d4016
     app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
   labels:
     app: quarkus-prj1-bd
     app.openshift.io/runtime: quarkus
-    app.kubernetes.io/version: "1.0"
     app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/version: "1.0"
     app.kubernetes.io/part-of: quarkus-prj1-bd-app
   name: quarkus-prj1-bd
 spec:
@@ -81,35 +81,35 @@ apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2021-03-03 - 08:21:30 +0000
+    app.quarkus.io/build-timestamp: 2021-03-03 - 09:43:02 +0000
     app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
-    app.quarkus.io/commit-id: 6c2bb417fbcb28fc11c910eda41052d1114facbd
+    app.quarkus.io/commit-id: c6e1805480e7b9050b704675f862487c4f5d4016
     app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
   labels:
     app: quarkus-prj1-bd
     app.openshift.io/runtime: quarkus
-    app.kubernetes.io/version: "1.0"
     app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/version: "1.0"
     app.kubernetes.io/part-of: quarkus-prj1-bd-app
   name: quarkus-prj1-bd
 spec:
   replicas: 1
   selector:
-    app.kubernetes.io/version: "1.0"
     app.kubernetes.io/name: quarkus-prj1-bd
+    app.kubernetes.io/version: "1.0"
     app.kubernetes.io/part-of: quarkus-prj1-bd-app
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2021-03-03 - 08:21:30 +0000
+        app.quarkus.io/build-timestamp: 2021-03-03 - 09:43:02 +0000
         app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
-        app.quarkus.io/commit-id: 6c2bb417fbcb28fc11c910eda41052d1114facbd
+        app.quarkus.io/commit-id: c6e1805480e7b9050b704675f862487c4f5d4016
         app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
       labels:
         app: quarkus-prj1-bd
         app.openshift.io/runtime: quarkus
-        app.kubernetes.io/version: "1.0"
         app.kubernetes.io/name: quarkus-prj1-bd
+        app.kubernetes.io/version: "1.0"
         app.kubernetes.io/part-of: quarkus-prj1-bd-app
     spec:
       containers:
@@ -141,16 +141,16 @@ spec:
       - quarkus-prj1-bd
       from:
         kind: ImageStreamTag
-        name: quarkus-prj1-bd:1.0
+        name: quarkus-prj1-bd:1.0.0-SNAPSHOT
     type: ImageChange
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2021-03-03 - 08:21:30 +0000
+    app.quarkus.io/build-timestamp: 2021-03-03 - 09:43:02 +0000
     app.openshift.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
-    app.quarkus.io/commit-id: 6c2bb417fbcb28fc11c910eda41052d1114facbd
+    app.quarkus.io/commit-id: c6e1805480e7b9050b704675f862487c4f5d4016
     app.quarkus.io/vcs-url: https://github.com/bdemacio1/quarkus_prj1.git
   labels:
     app.kubernetes.io/name: quarkus-prj1-bd

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.acme.getting.started.AnimalResourceTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.688 s - in org.acme.getting.started.AnimalResourceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.377 s - in org.acme.getting.started.AnimalResourceTest
