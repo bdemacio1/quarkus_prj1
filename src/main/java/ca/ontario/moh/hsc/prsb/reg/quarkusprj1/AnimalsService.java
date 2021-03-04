@@ -19,7 +19,7 @@ public class AnimalsService {
         animalList.add(new Animal("Tiger", "Orange", "Large"));
         animalList.add(new Animal("Wolf", "Grey", "Medium"));
         animalList.add(new Animal("Snowy Owl", "White", "Small"));
-
+        animalList.add(new Animal("Giraffe", "Yellow", "Large"));
     }
 
     public Animal byName(String name) {
